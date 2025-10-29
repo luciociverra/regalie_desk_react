@@ -1,0 +1,55 @@
+.header2-text.slot-item {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	height: 100%;
+	padding-left: 15px;
+	background: #fff8c06e !important;
+	font-size: 15px;
+}
+
+.header2-text .color-circle {
+	min-height: 25px;
+	min-width: 25px;
+	margin-right: 10px;
+	border-radius: 2px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.header2-text .color-circle > i {
+	width: 100%;
+	height: 100%;
+	font-size: 25px;
+}
+
+div.header2-text > div {
+	text-align: left;
+}
+
+div.header2-text div.tot-hrs {
+	font-size: 0.75em;
+}
+.rotateTitle {
+	position:relative;
+	top:5px;
+	left:0px;
+	line-height: 0.7;
+	vertical-align:top;
+	padding-top:3px;
+	line-height:1.2;
+	padding-left:2px; /* spazio sinistra */
+	border:0px dotted white;
+	/*transform:rotate(7deg);
+   -ms-transform:rotate(90deg);  
+   -moz-transform:rotate(90deg);  
+   -webkit-transform:rotate(90deg);  
+   -o-transform:rotate(90deg);   */
+ }
+ /* allontana la scritta famiglia prodotto dall immagine in risoluzioni + ampie*/
+ @media screen and (min-width: 1700px) {
+  .rotateTitle {
+	top:0px;
+  }
+}

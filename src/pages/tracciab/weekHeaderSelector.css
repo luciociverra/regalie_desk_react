@@ -1,0 +1,36 @@
+.date-header {
+	position: relative;
+	left: 10px;
+	/* top: 27px; */
+	font-size: 0.9em;
+	display: flex; /* mi sviluppo in orrizontale */
+}
+
+.date-header > div {
+	padding: 0 3px;
+	width: 175px;
+	font-weight: bold;
+	border-right: 1px solid lightgrey;
+}
+
+.date-header > div > div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.date-header > div:last-child {
+	border-right: 0;
+}
+ 
+.date-header > div .day-name {
+	font-size: 20px;
+	padding-right: 3px;
+	margin-bottom: 3px;
+}
+
+.date-header > div .day-number {
+	position: relative;
+	padding-left: 3px;
+	margin-bottom: 3px;
+}

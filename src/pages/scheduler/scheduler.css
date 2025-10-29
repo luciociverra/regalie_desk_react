@@ -1,0 +1,146 @@
+/* menu top alto */
+.layout-topbar {
+	border:0px dotted yellow;
+	position:fixed;
+	top:0px;left:0px;
+	margin-bottom: 0px;;
+}
+/* tutta l'area dello schedulatore */
+.layout-static {
+	top:56px;left:0px;
+	position: relative;
+	border:0px solid red;
+	height: 90vh;
+}
+/* intera area big-scheduler colore bordo esterno area DX*/
+#RBS-Scheduler-root * {
+	--scheduler-border-color: rgb(146, 139, 131);
+	border-color: var(--scheduler-border-color);
+}
+/* area date dx aggiustamento 'strano..' se possibile eliminare*/
+#RBS-Scheduler-root .header2-text-label {
+	font-weight: bold;
+	font-size: 17px;
+	color: rgb(63, 63, 63);
+}
+/*loi area piu' esterna intera schedulazione SX e DX*/
+#RBS-Scheduler-root.scheduler {
+	margin: 0px 0;
+}
+/*loi importante !! */
+#RBS-Scheduler-root  td {
+	vertical-align: top;
+}
+/* bordi ogni riga lavagna */
+#RBS-Scheduler-root table.scheduler-bg-table tbody tr td {
+	border-right-color: rgb(210, 210, 210);
+	border-bottom-color: rgb(210, 210, 210);
+	vertical-align: top;
+}
+/* inters prima riga sx-dx */ 
+#RBS-Scheduler-root th.header3-text {
+	 
+	border:0px solid red;
+	background: #fcfcfc;
+}
+
+#RBS-Scheduler-root th.header3-text.sat {
+	background: #fff8a8;
+}
+
+#RBS-Scheduler-root th.header3-text.sun {
+	background: #ffcccc;
+}
+
+#RBS-Scheduler-root th.header3-text.ph {
+	background: #62e86f;
+}
+
+.resource-table tr td div {
+	font-weight: bold;
+	font-size: 15px;
+	color: rgb(63, 63, 63);
+}
+.scheduler-view > div:first-child {
+	border-bottom: 0px solid var(--scheduler-border-color) !important;
+}
+
+#RBS-Scheduler-root .scheduler-view > div:nth-child(1) > div:first-child > div{
+	width: unset !important;
+}
+/** -----sticky-----------------------**/
+/* primo box a sinistra che rimane bloccato*/
+#RBS-Scheduler-root .resource-view > div:nth-child(1){
+	position: sticky !important;
+	top: 56px !important;
+	z-index: 3 !important;
+}
+/* area lotti che rimane bloccata*/
+#RBS-Scheduler-root .scheduler-view > div:nth-child(1){
+	position: sticky !important;
+	top: 56px !important;
+	z-index: 3 !important;
+}
+
+#RBS-Scheduler-root .resource-view > div:nth-child(2),
+#RBS-Scheduler-root .scheduler-view > div:nth-child(2){
+	overflow: unset !important;
+}
+/* tutta la prima colonna a sx */
+#RBS-Scheduler-root .resource-view{
+	overflow: unset;
+}
+
+#RBS-Scheduler-root  div.scheduler-bg  table.scheduler-bg-table {
+	width: calc(100% - 1px) !important;
+}
+#RBS-Scheduler-root table.scheduler-bg-table > tbody > tr > td:last-child{
+	border-right: none;
+}
+.event-container > div > a:first-of-type {
+	margin-top: 2px;
+}
+ 
+.scheduler-card {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+#RBS-Scheduler-root thead tr td > div {
+	margin-bottom: 10px !important;
+}
+
+.template #RBS-Scheduler-root thead tr td > div > div:nth-last-child(3) > div {
+	display: none;
+}
+
+#RBS-Scheduler-root thead tr td > div > div:nth-last-child(2) {
+	display: none;
+}
+
+#RBS-Scheduler-root thead tr td > div > div:nth-child(2) {
+	display: none;
+}
+
+#RBS-Scheduler-root .ui.small.menu {
+	min-height: unset;
+}
+
+#RBS-Scheduler-root .ui.small.menu a {
+	color: initial;
+	background: transparent;
+}
+
+#RBS-Scheduler-root .ui.small.menu a:hover {
+	background: rgba(0, 0, 0, 0.05);
+}
+#RBS-Scheduler-root .ui.small.menu a.active.item {
+	background: rgba(0, 0, 0, 0.05);
+}
+
+body div.rost-sched div.jstar.comp.card {
+	padding: 5px 5px;
+	margin: 3px 3px;
+}
+ 

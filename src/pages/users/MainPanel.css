@@ -1,0 +1,52 @@
+.primary {
+  background-color: #f09f7c!important;
+ }
+
+.divMain
+{
+	display:table;
+	width:100%;  
+
+}
+.divMain .divCell {
+	display:table-cell;
+	padding: 5px;
+}
+.divRow {
+    display:table-row;
+    width:100%
+}
+
+.divMain .divCellaHeader {
+	display:table-cell;
+	background-color:#f2f2f2;
+	padding: 2px;
+	border: 1px solid rgb(37, 25, 25);
+}
+.divMain .divCellaRow {
+	display:table-cell;
+	background-color:White;
+	padding: 2px;
+	font-size:0.9em;
+	border: 1px solid gray;
+}
+ .p-inputnumber-input {
+     max-width:60px!important;
+}
+.liList {
+  border-bottom: 1px solid gray;
+}
+/* checkbox abilitatao - disabilitato */
+.ui.toggle.checkbox input:checked ~ .box:before,
+.ui.toggle.checkbox input:checked ~ label:before {
+  background-color:  rgb(55, 165, 27) !important;
+}
+.ui.toggle.checkbox input:focus:checked~.box:before,
+.ui.toggle.checkbox input:focus:checked~label:before {
+    background-color: rgb(55, 165, 27) !important
+}
+
+.ui.toggle.checkbox .box:before, .ui.toggle.checkbox label:before {
+    background-color: red!important;
+
+}

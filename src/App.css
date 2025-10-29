@@ -1,0 +1,73 @@
+.p-datatable-thead {
+	vertical-align: top;
+}
+
+body .p-growl {
+	top: unset;
+}
+
+body ::-webkit-scrollbar {
+	-webkit-appearance: auto;
+	width: 15px;
+	 
+}
+
+.p-dialog-titlebar {
+	min-height: 45px;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.jstar.comp.page.header.form h2 {
+	font-weight: bold;
+}
+
+.p-dialog-wrapper.p-component-overlay.p-dialog-mask.p-dialog-wrapper-visible {
+	z-index: 10000 !important;
+}
+
+.ui.dimmer {
+	z-index: 10001 !important;
+}
+
+.dlgmsg .ui.large.top.attached.header.header {
+	margin-right: -1px;
+	margin-left: -1px;
+}
+.bottom.attached {
+    height: 85vh
+ }
+ 
+body div.layout-logo img.logo {
+ 	max-height: 95%;
+}
+ 
+.overBolder:hover {
+	text-decoration: underline;
+ }
+
+.overBolder {
+	height:40px;
+	padding:1px;
+ }
+ 
+ .padding15 { padding: 15px;}
+/* usato in edit CP */
+ .borderShadow {
+	box-shadow: inset 0 3px 6px rgba(0,0,0,0.16), 0 4px 6px rgba(0,0,0,0.45);
+	border-radius: 10px;
+  }
+  /* usato in customize color */
+ .btColor {
+	width: 20px; height: 20px;border-radius: 20px; cursor:hand;border:1px solid gray
+  }
+
+  @media screen and (max-width:1200px) {
+	.show-username {
+	 display: none;
+	}
+}
+/* celle data picker piu' evidenti */
+.clndr-cell, .clndr-control { color:black !important;font-weight:bold;}

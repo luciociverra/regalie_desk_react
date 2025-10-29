@@ -1,0 +1,80 @@
+.ui.popup.desk-overlay-panel {
+	margin-top: 7px;
+}
+.ui.basic.popup.desk-overlay-panel {
+	margin-top: -5px;
+	padding: 10px;
+	min-width: 200px;
+	max-width: unset;
+}
+
+.desk-overlay-panel .header {
+	display: flex;
+	align-items: center;
+	padding-bottom: 3px;
+	border-bottom: 2px solid rgb(233, 233, 233);
+}
+/** lciv  background modal grigio chiaro   finale 0.5 (troppo scuro)) **/
+.dimmer { background-color:rgba(182, 182, 178, 0.18) !important; }
+
+.desk-overlay-panel .header .header-text {
+	font-weight: bold;
+	margin-left: 5px;
+	margin-bottom: 2px;
+	font-size: 15px;
+}
+
+.divLotto
+{
+	display:table;
+	table-layout: fixed;
+	width:100%
+}
+.divLotto .divCella {
+	display:table-cell;
+	padding: 5px;
+}
+
+.divLotto .divCellaHeader {
+	display:table-cell;
+	background-color:#f2f2f2;
+	padding: 2px;
+	border: 1px solid rgb(37, 25, 25);
+}
+.divLotto .divCellaRow {
+	display:table-cell;
+	background-color:White;
+	padding: 2px;
+	font-size:0.9em;
+	border: 1px solid gray;
+}
+.divLotto .divLottoRow {
+	display:table-row;
+	height:auto; 
+}
+.divLotto .link { color: black;}
+.divLotto .link:hover { color: rgb(213, 135, 9);   font-size: 18px;}
+
+.p-inputnumber-input {
+     max-width:60px!important;
+}
+.boldTxt {	font-weight:bold; }
+.rigaSelezionata { background-color: rgb(247, 211, 92)!important;font-weight:bold;}
+.rigaSelezionataA a { color: rgb(237, 84, 13)!important;font-weight:bold;}
+
+/*'#'C:\Loison\loison_desk_react\node_modules\semantic-ui-css\components\modal.css
+*/
+@media only screen and (min-width: 992px) {
+	.ui.large.modal {
+	  width: 94%;
+	  margin: 0em 0em 0em 0em;
+	}
+  }
+  @media only screen and (min-width: 992px) {
+	.ui.small.modal {
+	  width: 75%;
+	  margin: 0em 0em 0em 0em;
+	}
+  }
+  
+  

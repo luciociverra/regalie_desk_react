@@ -1,0 +1,71 @@
+{
+	"name": "Loison_production_desk",
+	"version": "0.0.6",
+	"homepage": ".",
+	"dependencies": {
+		"@fullcalendar/core": "^5.4.0",
+		"@fullcalendar/daygrid": "^5.4.0",
+		"@fullcalendar/interaction": "^5.4.0",
+		"@fullcalendar/timegrid": "^5.4.0",
+		"@types/jest": "^26.0.19",
+		"@types/node": "^14.14.13",
+		"@types/react": "^16.9.56",
+		"@types/react-dom": "^17.0.0",
+		"@types/react-redux": "^7.1.12",
+		"@types/react-router-dom": "^5.1.6",
+		"@types/resize-observer-browser": "^0.1.4",
+		"antd": "^4.9.3",
+		"axios": "^0.21.0",
+		"bootstrap": "^4.5.3",
+		"classnames": "^2.2.6",
+		"moment": "^2.29.4",
+		"react": "^16.14.0",
+		"react-app-polyfill": "^2.0.0",
+		"react-beautiful-dnd": "^13.1.1",
+		"react-big-scheduler": "^0.2.7",
+		"react-bootstrap": "^1.4.0",
+		"react-color": "^2.19.3",
+		"react-data-export": "^0.6.0",
+		"react-dnd-html5-backend": "^11.1.3",
+		"react-dom": "^16.14.0",
+		"react-moment": "^1.1.2",
+		"react-overlays": "^4.1.1",
+		"react-redux": "^7.2.2",
+		"react-router-dom": "5.2.0",
+		"react-scripts": "^4.0.1",
+		"react-semantic-ui-datepickers": "^2.17.1",
+		"react-stomp": "^5.1.0",
+		"react-transition-group": "^4.4.1",
+		"redux": "^4.0.5",
+		"redux-form": "^8.3.7",
+		"redux-saga": "^1.1.3",
+		"semantic-ui-css": "^2.4.1",
+		"semantic-ui-react": "2.0.1",
+		"simple-react-validator": "1.6.0",
+		"sockjs": "^0.3.24",
+		"xlsx": "^0.16.9"
+	},
+	"devDependencies": {
+		"@types/lodash": "^4.14.149",
+		"@types/react-color": "^3.0.4",
+		"@types/reactcss": "^1.2.3",
+		"http-proxy-middleware": "^0.19.1",
+		"moment-round": "^1.0.1"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"compile": "npm run build && cd build && C:/LCOM_java/jdk18/bin/jar -cvf regalie.war ."
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": [
+		">0.2%",
+		"not dead",
+		"not ie <= 11",
+		"not op_mini all"
+	]
+}

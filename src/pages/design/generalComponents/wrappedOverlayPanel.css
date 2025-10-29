@@ -1,0 +1,43 @@
+.ui.popup.ksc-overlay-panel {
+	margin-top: 7px;
+}
+.ui.basic.popup.ksc-overlay-panel {
+	margin-top: -5px;
+	padding: 10px;
+	min-width: 200px;
+	max-width: unset;
+}
+
+.ksc-overlay-panel .header {
+	display: flex;
+	align-items: center;
+	padding-bottom: 3px;
+	border-bottom: 2px solid rgb(233, 233, 233);
+}
+
+.ksc-overlay-panel .header .header-text {
+	font-weight: bold;
+	margin-left: 5px;
+	margin-bottom: 2px;
+	font-size: 15px;
+}
+
+.hide-button,
+.confirm-button {
+	width: 20px;
+	padding: 0;
+	background: transparent;
+	border: 0;
+	margin-right: 0;
+	font-size: 15px;
+}
+
+.hide-button:disabled,
+.confirm-button:disabled {
+	opacity: 0.3;
+	filter: brightness(0.6);
+}
+
+.ksc-overlay-panel .header button:first-of-type {
+	margin-left: auto;
+}
