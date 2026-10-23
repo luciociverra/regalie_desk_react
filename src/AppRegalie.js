@@ -1,14 +1,13 @@
 import React,{useState,useEffect,createRef} from "react";
-import { Input,Button } from 'semantic-ui-react';
-import { apiRequest,jAlert,remoteTest,jLog,log } from "api";
+import { Input} from 'semantic-ui-react';
+import { apiRequest,jAlert,remoteTest,log } from "api";
 import {AppNumAddetti} from "./AppNumAddetti";
 
 export const AppRegalie = ()=>{
  
     const [values, setValues] = useState({ idOperatore: "", idRiga: "", numOperatori:0});
     const [error, setError] = useState("");
-    const [msg, setMsg] = useState("");
-    const [forceReload, setForceReload] = useState(0);
+    const [msg, setMsg]  = useState("");
     const [open,setOpen] = useState(false);
    
     const [loading, setLoading] = useState(false);
@@ -16,7 +15,8 @@ export const AppRegalie = ()=>{
     const inputUserRefRiga = createRef();
     
     useEffect(() => {
-     inputUserRefOperatore.current.focus();
+      log("AppRegalie.js UE focus operatore"); 
+      inputUserRefOperatore.current.focus();
     }, []);
  
 
@@ -25,8 +25,8 @@ export const AppRegalie = ()=>{
       setMsg("");
       setValues({ idOperatore: "", idRiga: "",numOperatori:0});
       window.location.reload(true);
-     
     };   
+   
     const handleError=(text) =>{
       setError(text);
       setValues({ idOperatore: "", idRiga: "",numOperatori:0});
@@ -35,14 +35,14 @@ export const AppRegalie = ()=>{
     }
     
     const handleChange = (e, { name, value }) => {
-        log("handleChange "+value);
+        //log("handleChange "+value);
         setError('');
         let newArray = { ...values, [name]: value };
         setValues(newArray);
     };    
 
   const onKeyDownOper = (e) => {
-    log(e.key);
+    //log(e.key);
     if (e.key === "Enter") {
       e.preventDefault();
       inputUserRefRiga.current.focus();
@@ -50,9 +50,10 @@ export const AppRegalie = ()=>{
   };
 
   const onKeyDownRiga = (e) => {
-    log(e.key);
+    //log(e.key);
     if (e.key === "Enter") {
       e.preventDefault();
+      log("Enter submit data")
       submitData();
       inputUserRefOperatore.current.focus();
     }
@@ -66,7 +67,7 @@ export const AppRegalie = ()=>{
     // controllo credenziali (solo utente  su database dopo eventuale verifica AD)
   const submitData = async ()=>{
         setMsg("");
-        log("inizio invio dati");
+        log(" submitData inizio invio dati num operatore:"+values.numOperatori +" idOperatore:"+values.idOperatore+" idRiga:"+values.idRiga);
         //
         if(values.idOperatore.trim()==="" || values.idRiga.trim()==="")
         {
@@ -78,12 +79,12 @@ export const AppRegalie = ()=>{
           values.idOperatore.toLocaleUpperCase().startsWith("C") ||
           values.idOperatore.toLocaleUpperCase().startsWith("M") 
         ) operValid=true;
-       
+       /* anche alfa numerico
         if(! isNumber(values.idRiga))
         {
           return handleError("Numero riga non valido");
         }
-        
+      */  
         if(! operValid)
         {
           setError("Codice operatore non valido");
@@ -91,15 +92,17 @@ export const AppRegalie = ()=>{
           return;
         }
         setLoading(true);
+        log("faccio test remoto");
         const a= await remoteTest();
         if(! a) {
+          log("test remoto fallito");
           setLoading(false);
-          setError("Application server (API) not ready"); return;
+          setError("Application server (API) not ready");
           return;
         }
         log("test passato");
         // devo chiedere gli addetti ?
-        if( values.idOperatore.toLocaleUpperCase().startsWith("C") && values.numOperatori==0) {
+        if( values.idOperatore.toLocaleUpperCase().startsWith("C") && values.numOperatori===0) {
           const chiedoAddetti= await addettiVerify();
           if(chiedoAddetti) {
             setLoading(false);
@@ -110,7 +113,8 @@ export const AppRegalie = ()=>{
         //-----------------------
         try 
         {
-        const response = await apiRequest({
+          log("chiamate a dati -----> /regalie")
+          const response = await apiRequest({
             method: "POST",
             url: "/regalie",
             data: values,
@@ -119,8 +123,12 @@ export const AppRegalie = ()=>{
           if (response.status !== 200) {
             setError("Attenzione servizio di registrazione non disponibile - contattare l'assistenza");
           } else {
+            if(response.data.rc==="0"){
+               setError(response.data.msg);
+               return;
+            }
+         
             setMsg(response.data.msg);
-           
             log("risposta ok pulisco");
             setValues({ idOperatore: "", idRiga: "", numOperatori:0});
           }
@@ -157,12 +165,12 @@ export const AppRegalie = ()=>{
     return (
     <>
     <div style= {{backgroundColor: '#fffffe', textAlign: 'center', height: '100vh'}}>
-   
              
 		<img src={process.env.PUBLIC_URL + "/assets/layout/images/logosonia.png"}
-         style= {{marginTop: '60px', marginBottom:'60px',width:'20%', }}/>
+         style={{marginTop: '60px', marginBottom:'60px',width:'20%' }}
+         alt='logo' />
 
-          <div style={{marginBottom: 20,}}>
+          <div style={{marginBottom: 20}}>
             <Input 
             style={{width: '25%', minWidth:250, border: '1px solid grey', fontSize:'1.3em', borderRadius: 5, height: 60}}
             icon='user' 
@@ -175,13 +183,13 @@ export const AppRegalie = ()=>{
             ref={inputUserRefOperatore} />  
           </div>
 
-          <div >
+          <div>
             <Input 
-             style={{width: '25%', minWidth:250, border: '1px solid grey', fontSize:'1.3em',borderRadius: 5, height: 60}}
+             style={{width: '25%',minWidth:250,border: '1px solid grey', fontSize:'1.3em',borderRadius: 5, height: 60}}
              icon='barcode' 
              iconPosition='left' 
              placeholder='Barcode'
-             name="idRiga"
+             name='idRiga'
              value={values.idRiga}
              onChange={handleChange} 
              onKeyDown={onKeyDownRiga}
@@ -199,14 +207,16 @@ export const AppRegalie = ()=>{
            </h2>
           }
           </div>
+          
           <div style={{marginTop: 30,color:"#34eb55",fontWeight:'bold',fontSize:'1.6em'}}>
            {msg} 
           </div>
           <div style={{marginTop: 0,color:"red",fontWeight:'bold',fontSize:'1.6em'}}>
            {error} 
           </div>
-           <div style={{marginTop: 10 }}>
-           <button className="huge  ui button"  
+          
+          <div style={{marginTop: 10 }}>
+           <button className="huge ui button"  
             onClick={handleReset} style={{cursor:'pointer',borderRadius:20,backgroundColor:'#ECBFC2'}}>Reset</button>
            </div>
            <AppNumAddetti open={open} setOpen={setOpen} setNumAddetti={setNumAddetti} handleReset={handleReset}/>
