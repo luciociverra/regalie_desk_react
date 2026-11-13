@@ -46,7 +46,7 @@ export const apiRequest = async (config) => {
 	}
 };
 export const remoteTest = async () => {
-    log("remoteTest")
+    log("remoteTest to "+process.env.REACT_APP_HOST+"/api/hello")
     try {
         await axios({
             method: 'get',
