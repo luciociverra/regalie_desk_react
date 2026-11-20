@@ -1,7 +1,21 @@
 import React,{useState,useEffect,createRef} from "react";
 import { Input} from 'semantic-ui-react';
-import { apiRequest,jAlert,remoteTest,log } from "api";
-import {AppNumAddetti} from "./AppNumAddetti";
+import { apiRequest,jAlert,remoteTest,log,jLog } from "api";
+import { AppNumAddetti } from "./AppNumAddetti";
+import  NatAperte  from "./NatAperte";
+
+const normalizeCodNat = (raw) => {
+  const cod = raw ?? '';
+
+  if (cod.includes("'")) {
+    return cod.replace(/-/g, '/')
+              .replace(/'/g, '-')
+              .replace(/=/g, '/');
+  }
+
+  return cod.replace(/-(?!\d)/g, '/')
+            .replace(/=/g, '/');
+};
 
 export const AppRegalie = ()=>{
  
@@ -34,7 +48,6 @@ export const AppRegalie = ()=>{
     }
     
     const handleChange = (e, { name, value }) => {
-        //log("handleChange "+value);
         setError('');
         let newArray = { ...values, [name]: value.toUpperCase() };
         setValues(newArray);
@@ -91,7 +104,13 @@ export const AppRegalie = ()=>{
             return;
           }
           setLoading(true);
-          
+          const updatedValues = {
+             ...values,
+             codNat: normalizeCodNat(values.codNat)
+        };
+
+        setValues(updatedValues);
+      
           const a= await remoteTest();
           if(! a) {
             log("test remoto fallito");
@@ -102,7 +121,7 @@ export const AppRegalie = ()=>{
           log("test remote passato");
           // devo chiedere gli addetti ?
           if( values.idOperatore.toLocaleUpperCase().startsWith("C") && values.numOperatori===0) {
-            const chiedoAddetti= await addettiVerify();
+            const chiedoAddetti= await addettiVerify(updatedValues);
             if(chiedoAddetti) {
               setLoading(false);
               setOpen(true);
@@ -112,17 +131,19 @@ export const AppRegalie = ()=>{
           //
           try 
           {
+          
             log("chiamate a dati -----> /regalie")
             const response = await apiRequest({
               method: "POST",
               url: "/regalie",
-              data: values,
+              data: updatedValues,
               user: 'pc-tempi_regalie'
             });
             if (response.status !== 200) {
               setError("Attenzione servizio di registrazione non disponibile - contattare l'assistenza");
             } else {
               if(response.data.rc==="0"){
+                jLog(response.data);
                 setError(response.data.msg);
                 return;
               }
@@ -137,13 +158,12 @@ export const AppRegalie = ()=>{
           }
       }
 
-      const addettiVerify = async () => {
-        log("addettiVerify ");
+      const addettiVerify = async (updatedValues) => {
         try {
           const response = await apiRequest({
             method: "POST",
             url: "/addettiregalie",
-            data: values,
+            data: updatedValues,
             user: 'pc-tempi_regalie'
           });
           if (response.status !== 200) {
@@ -158,11 +178,6 @@ export const AppRegalie = ()=>{
         }
       }
 
-      function isNumber(char) {
-        if (typeof char !== 'string')  return false;
-          if (char.trim() === '') 	    return false;
-          return !isNaN(char);
-      }
       return (
       <>
       <div style= {{backgroundColor: '#fffffe', textAlign: 'center', height: '100vh'}}>
@@ -216,10 +231,11 @@ export const AppRegalie = ()=>{
             {error} 
             </div>
             
-            <div style={{marginTop: 10 }}>
+            <div style={{marginTop: 10,marginBottom:30 }}>
             <button className="huge ui button"  
               onClick={handleReset} style={{cursor:'pointer',borderRadius:20,backgroundColor:'#ECBFC2'}}>Reset</button>
             </div>
+            <NatAperte/>
             <AppNumAddetti open={open} setOpen={setOpen} setNumAddetti={setNumAddetti} handleReset={handleReset}/>
           </div>
         
